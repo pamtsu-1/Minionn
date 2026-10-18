@@ -1,0 +1,858 @@
+	/*------------------ CÀI ĐẶT CHUNG -----------------------*/
+	:root {
+		--pink: #ff8fab;
+		--yellow: #ffd166;
+		--blue: #90e0ef;
+		--purple: #cdb4db;
+		--text: #222;
+		--radius: 25px;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	body {
+		font-family: Arial, sans-serif;
+		color: var(--text);
+		background: linear-gradient(180deg, #fff8fc, #f7fbff, #fffdf5);
+	}
+
+	/* Hiệu ứng xuất hiện khi cuộn trang */
+	.reveal {
+		opacity: 0;
+		transform: translateY(50px);
+		transition: opacity 0.8s ease, transform 0.8s ease;
+	}
+
+	.reveal.show {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	/*------------------ HEADER - MENU -----------------------*/
+	header {
+		min-height: 80px;
+	}
+
+	.navbar {
+		min-height: 80px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 20px;
+		padding: 12px 50px;
+	}
+
+	.menu {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		list-style: none;
+		gap: 15px 30px;
+	}
+
+	.menu a {
+		position: relative;
+		padding-bottom: 6px;
+		color: black;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.menu a::after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+		width: 0;
+		height: 3px;
+		border-radius: 10px;
+		background: linear-gradient(90deg, var(--pink), var(--yellow), var(--blue), var(--purple));
+		transform: translateX(-50%);
+		transition: width 0.3s ease;
+	}
+
+	.menu a:hover::after,
+	.menu a:focus-visible::after {
+		width: 100%;
+	}
+
+	/* Cụm logo bên trái */
+	.logo {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+		gap: 12px;
+	}
+
+	/* Logo tròn */
+	.logo-round {
+		width: 50px;
+		height: 50px;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+
+	/* Ảnh ngang kế bên */
+	.logo-wide {
+		width: auto;
+		max-width: min(35vw, 250px);
+		height: 50px;
+		object-fit: contain;
+	}
+
+	/*------------------ HERO - DESIGN BACKGROUND -----------------------*/
+	.hero {
+		min-height: 90vh;
+		min-height: 90svh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 40px 20px;
+		text-align: center;
+		background-image: linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)), url("images/back.jpg");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		animation: heroLoad 1.4s ease-out both;
+	}
+
+	.hero h1 {
+		font-size: clamp(2.5rem, 7vw, 90px);
+		letter-spacing: clamp(2px, 0.6vw, 8px);
+		text-shadow: 0 0 10px rgba(255,255,255,0.8),
+					 0 0 25px rgba(144,224,239,0.7),
+					 0 0 45px rgba(255,143,171,0.5);
+	}
+
+	.hero h1,
+	.hero p {
+		opacity: 0;
+		transform: translateY(30px);
+		animation: heroText 1s ease-out 0.8s forwards;
+	}
+
+	/* Tiêu đề từng chữ */
+	.hero-title {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: clamp(2px, 0.8vw, 10px);
+		font-size: clamp(2.5rem, 7vw, 90px);
+		letter-spacing: clamp(2px, 0.4vw, 5px);
+	}
+
+	.hero-title span {
+		display: inline-block;
+		opacity: 0;
+	}
+
+	/* Chữ lẻ đi từ trái vào */
+	.hero-title span:nth-child(odd) {
+		transform: translateX(-120px);
+		animation: letterFromLeft 1s ease forwards;
+	}
+
+	/* Chữ chẵn đi từ phải vào */
+	.hero-title span:nth-child(even) {
+		transform: translateX(120px);
+		animation: letterFromRight 1s ease forwards;
+	}
+
+	/* Delay từng chữ */
+	.hero-title span:nth-child(1) { animation-delay: 0.2s; }
+	.hero-title span:nth-child(2) { animation-delay: 0.3s; }
+	.hero-title span:nth-child(3) { animation-delay: 0.4s; }
+	.hero-title span:nth-child(4) { animation-delay: 0.5s; }
+	.hero-title span:nth-child(5) { animation-delay: 0.6s; }
+	.hero-title span:nth-child(6) { animation-delay: 0.7s; }
+	.hero-title span:nth-child(7) { animation-delay: 0.8s; }
+
+	/* Animation hero */
+	@keyframes heroLoad {
+		from { opacity: 0; transform: translateY(70px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	@keyframes heroText {
+		from { opacity: 0; transform: translateY(30px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	@keyframes letterFromLeft {
+		from { opacity: 0; transform: translateX(-120px); }
+		to { opacity: 1; transform: translateX(0); }
+	}
+
+	@keyframes letterFromRight {
+		from { opacity: 0; transform: translateX(120px); }
+		to { opacity: 1; transform: translateX(0); }
+	}
+
+	/*------------------ CÁC SECTION -----------------------*/
+	section {
+		padding: 80px 50px;
+	}
+
+	section h2 {
+		display: inline-block;
+		margin-bottom: 30px;
+		background: linear-gradient(90deg, #ff86b7, #ffcb57, #66b8ff, #b388ff);
+		background-size: 300% 100%;
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: titleColor 5s linear infinite;
+	}
+
+	@keyframes titleColor {
+		from { background-position: 0% 50%; }
+		to { background-position: 300% 50%; }
+	}
+
+	/*------------------ GIỚI THIỆU VỀ BAND -----------------------*/
+	#about {
+		background: linear-gradient(135deg, #fff1f7, #eef9ff);
+	}
+
+	.about-box {
+		width: 100%;
+		min-height: 250px;
+		padding: 40px;
+		border-radius: var(--radius);
+		background: linear-gradient(90deg, #dff3ff 0%, #d9ecff 35%, #e9ddff 70%, #fff1c9 100%);
+		box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+	}
+
+	/*------------------ DANH SÁCH THÀNH VIÊN -----------------------*/
+	#members {
+		background: linear-gradient(135deg, #fffdf5, #f7f0ff);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-top: 40px;
+		padding-bottom: 40px;	
+	}
+
+	.member-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 25px;
+		justify-content: center;
+	}
+
+	/* Card thành viên */
+	.member-card {
+		position: relative;
+		flex: 0 1 300px;
+		width: min(100%, 300px);
+		aspect-ratio: 3 / 4;
+		border-radius: var(--radius);
+		overflow: hidden;
+		transition: transform 0.35s ease, box-shadow 0.35s ease;
+	}
+
+	.member-card:nth-child(1) { box-shadow: 0 12px 30px rgba(255,143,171,0.25); }
+	.member-card:nth-child(2) { box-shadow: 0 12px 30px rgba(144,224,239,0.28); }
+	.member-card:nth-child(3) { box-shadow: 0 12px 30px rgba(255,209,102,0.28); }
+	.member-card:nth-child(4) { box-shadow: 0 12px 30px rgba(205,180,219,0.28); }
+
+	.member-card:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 15px 35px rgba(0,0,0,0.15), 0 0 25px rgba(144,224,239,0.5);
+	}
+
+	/* Ảnh */
+	.member-card img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.member-card:hover img {
+		transform: scale(1.05);
+	}
+
+	/* Lớp chữ nằm trên ảnh */
+	.member-info {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		padding: 50px 20px 20px;
+		color: white;
+		background: linear-gradient(transparent, rgba(0,0,0,0.75));
+	}
+
+	/* Tên */
+	.member-info h3 {
+		margin-bottom: 5px;
+		font-size: 24px;
+	}
+
+	/* Vai trò */
+	.member-info p {
+		font-size: 14px;
+	}
+
+	.role {
+		font-weight: bold;
+		background: linear-gradient(90deg, #ff4d4d, #ffcc00, #00d084, #00aaff, #a855f7, #ff4d4d);
+		background-size: 300% 100%;
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: roleColor 4s linear infinite;
+	}
+
+	@keyframes roleColor {
+		from { background-position: 0% 50%; }
+		to { background-position: 300% 50%; }
+	}
+
+	/* Thành viên dạng khối (nếu có sử dụng) */
+	.member {
+		margin-bottom: 20px;
+		padding: 50px;
+		background-color: #eeeeee;
+	}
+
+	/*------------------ MUSIC -----------------------*/
+	#music {
+		background: linear-gradient(135deg, #eef9ff, #fff0f6);
+	}
+
+	/* Danh sách nhạc */
+	.music-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+	}
+
+	/* Card nhạc */
+	.music-card {
+		flex: 0 1 260px;
+		width: min(100%, 260px);
+		padding: 25px;
+		text-align: center;
+		border-radius: 20px;
+		overflow: hidden;
+		background: white;
+		box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	.music-card:nth-child(1) { background: #fff4f8; }
+	.music-card:nth-child(2) { background: #f0faff; }
+	.music-card:nth-child(3) { background: #fff9e8; }
+	.music-card:nth-child(4) { background: #f7f0ff; }
+
+	.music-card:hover {
+		transform: translateY(-5px);
+	}
+
+	/* Ảnh bài hát */
+	.music-card img {
+		display: block;
+		width: 100%;
+		height: 300px;
+		object-fit: cover;
+	}
+
+	/* Ảnh đĩa tròn */
+	.music-card .music-img {
+		width: min(200px, 100%);
+		height: auto;
+		aspect-ratio: 1 / 1;
+		margin: 0 auto;
+		object-fit: cover;
+		border-radius: 50%;
+		box-shadow: 0 0 0 6px white, 0 0 0 9px #cfe8ff, 0 8px 25px rgba(0,0,0,0.15);
+		transition: transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	/* Ảnh xoay và phát sáng khi hover */
+	.music-card:hover .music-img {
+		animation: quayDia 3s linear infinite, musicGlow 1.5s ease-in-out infinite alternate;
+	}
+
+	@keyframes quayDia {
+		from { transform: rotate(0deg); }
+		to { transform: rotate(360deg); }
+	}
+
+	@keyframes musicGlow {
+		from { box-shadow: 0 0 0 6px white, 0 0 0 9px #cfe8ff, 0 8px 25px rgba(0,0,0,0.15); }
+		to { box-shadow: 0 0 0 6px white, 0 0 0 9px #ffb6d9, 0 0 30px rgba(255,182,217,0.8); }
+	}
+
+	/* Thông tin */
+	.music-info {
+		padding: 20px;
+	}
+
+	/* Tên bài */
+	.music-info h3 {
+		margin-bottom: 5px;
+		font-size: 22px;
+	}
+
+	/* Tên band */
+	.music-info p {
+		margin-bottom: 20px;
+		color: #777;
+	}
+
+	/* Nút nghe */
+	.music-info a {
+		display: inline-block;
+		padding: 10px 20px;
+		border-radius: 20px;
+		background-color: #cfe8ff;
+		color: black;
+		font-size: 13px;
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	/*------------------ SCHEDULE - LỊCH DIỄN -----------------------*/
+	#schedule {
+		background: linear-gradient(135deg, #fff7e6, #eefaff);
+	}
+
+	.schedule-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 25px;
+	}
+
+	.schedule-card {
+		position: relative;
+		display: block;
+		flex: 0 1 300px;
+		width: min(100%, 300px);
+		aspect-ratio: 3 / 4;
+		border-radius: var(--radius);
+		overflow: hidden;
+		cursor: pointer;
+		color: inherit;
+		text-decoration: none;
+		box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+	}
+
+	.schedule-card img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.schedule-card:hover img {
+		transform: scale(1.07);
+	}
+
+	.schedule-info {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		padding: 70px 20px 20px;
+		color: white;
+		background: linear-gradient(transparent, rgba(0,0,0,0.8));
+	}
+
+	.schedule-info h3 {
+		margin-bottom: 8px;
+		font-size: 24px;
+	}
+
+	.schedule-date-text {
+		font-weight: bold;
+	}
+
+	.schedule-type {
+		font-weight: bold;
+		background: linear-gradient(90deg, #ff4d4d, #ffcc00, #00d084, #00aaff, #a855f7);
+		background-size: 300% 100%;
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: roleColor 4s linear infinite;
+	}
+		/*------------------ CĂN CHỈNH LỊCH DIỄN -----------------------*/
+	#schedule > h2 {
+		align-self: center;
+		text-align: center;
+	}
+
+	#schedule .schedule-list {
+		justify-content: flex-start;
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	/*------------------ LIÊN HỆ -----------------------*/
+	#contact {
+		background: linear-gradient(135deg, #eefaff, #fff1f7, #fff8df);
+	}
+
+	#contact p {
+		margin-bottom: 10px;
+		color: #555;
+	}
+
+	#contact a {
+		color: #555;
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	#contact a:hover,
+	#contact a:focus-visible {
+		text-decoration: underline;
+	}
+
+	.contact-label {
+		font-weight: bold;
+		background: linear-gradient(90deg, #ff4d4d, #ffcc00, #00d084, #00aaff, #a855f7, #ff4d4d);
+		background-size: 300% 100%;
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: contactColor 4s linear infinite;
+	}
+
+	@keyframes contactColor {
+		from { background-position: 0% 50%; }
+		to { background-position: 300% 50%; }
+	}
+
+	/*------------------ FOOTER -----------------------*/
+	footer {
+		padding: 40px;
+		text-align: center;
+		color: #333;
+		background: linear-gradient(90deg, #ffd6e7, #dff3ff, #fff1b8);
+	}
+
+	/*------------------ RESPONSIVE - TABLET -----------------------*/
+	@media (max-width: 900px) {
+		.navbar {
+			padding: 12px 25px;
+		}
+
+		.menu {
+			gap: 12px 18px;
+		}
+
+		section {
+			padding: 60px 25px;
+		}
+	}
+
+	/*------------------ RESPONSIVE - ĐIỆN THOẠI -----------------------*/
+	@media (max-width: 600px) {
+		.navbar {
+			flex-direction: column;
+			justify-content: center;
+			gap: 15px;
+			padding: 15px 16px;
+		}
+
+		.logo-wide {
+			max-width: 65vw;
+		}
+
+		.menu {
+			justify-content: center;
+			gap: 12px 16px;
+		}
+
+		.menu a {
+			font-size: 14px;
+		}
+
+		.hero {
+			min-height: 70vh;
+			min-height: 70svh;
+			padding: 35px 16px;
+		}
+
+		.hero h1,
+		.hero-title {
+			font-size: clamp(2rem, 9vw, 3.5rem);
+			letter-spacing: 2px;
+		}
+
+		section {
+			padding: 50px 16px;
+		}
+
+		.about-box {
+			padding: 25px 20px;
+		}
+
+		.member-list,
+		.music-list,
+		.schedule-list {
+			justify-content: center;
+		}
+
+		.member-card,
+		.schedule-card {
+			flex-basis: 300px;
+			max-width: 100%;
+		}
+
+		.music-card {
+			flex-basis: 260px;
+			max-width: 100%;
+		}
+
+		footer {
+			padding: 30px 16px;
+		}
+	}
+
+	/*------------------ HỖ TRỢ GIẢM CHUYỂN ĐỘNG -----------------------*/
+	@media (prefers-reduced-motion: reduce) {
+		.reveal,
+		.hero,
+		.hero h1,
+		.hero p,
+		.hero-title span,
+		.role,
+		.schedule-type,
+		.contact-label,
+		section h2,
+		.music-card:hover .music-img {
+			animation: none;
+			transition: none;
+		}
+
+		.reveal,
+		.hero,
+		.hero h1,
+		.hero p,
+		.hero-title span {
+			opacity: 1;
+			transform: none;
+		}
+
+		.member-card,
+		.member-card img,
+		.music-card,
+		.schedule-card img {
+			transition: none;
+		}
+	}
+
+	/*------------------ NỀN PASTEL RIÊNG VÀ ĐƯỜNG SÓNG -----------------------*/
+	/* Sóng thuộc phần mới, không sử dụng top âm hoặc đè lên ảnh Hero. */
+	:root {
+		--wave-height: 86px;
+		--section-width: 1440px;
+	}
+
+	/* Màu của từng phần và màu phần ngay phía trước. */
+	#about {
+		--section-bg: #fff0f6;      /* Hồng pastel */
+		--previous-bg: #fff8fc;     /* Nền chuyển tiếp dưới ảnh Hero */
+		--wave-accent: #f9cadf;
+	}
+
+	#members {
+		--section-bg: #f1eaff;      /* Tím pastel */
+		--previous-bg: #fff0f6;
+		--wave-accent: #d9c6fa;
+	}
+
+	#music {
+		--section-bg: #e9f7ff;      /* Xanh dương pastel */
+		--previous-bg: #f1eaff;
+		--wave-accent: #bee4fb;
+	}
+
+	#schedule {
+		--section-bg: #fff5dc;      /* Vàng pastel */
+		--previous-bg: #e9f7ff;
+		--wave-accent: #ffdfa0;
+	}
+
+	#contact {
+		--section-bg: #e8f8ee;      /* Xanh lá pastel */
+		--previous-bg: #fff5dc;
+		--wave-accent: #c4e8d2;
+	}
+
+	footer {
+		--section-bg: #ffe8f1;      /* Hồng đào pastel */
+		--previous-bg: #e8f8ee;
+		--wave-accent: #f6c5d8;
+	}
+
+	/*------------------ BỐ CỤC GIỮA HAI ĐƯỜNG SÓNG -----------------------*/
+	/* Không ép chiều cao 690px/790px: section cao theo nội dung thực tế. */
+	#about,
+	#members,
+	#music,
+	#schedule,
+	#contact {
+		position: relative;
+		isolation: isolate;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		min-height: 0;
+		margin: 0;
+		padding: 112px 50px 84px;
+		background: var(--section-bg);
+	}
+
+	/* Tiêu đề căn giữa đồng bộ cho About, Members, Music, Schedule, Contact. */
+	#about > h2,
+	#members > h2,
+	#music > h2,
+	#schedule > h2,
+	#contact > h2 {
+		align-self: center;
+		margin-bottom: 32px;
+		text-align: center;
+	}
+
+	/* Các nhóm nội dung không bị sóng che và không trôi lệch. */
+	.about-box {
+		width: min(100%, 1080px);
+		min-height: 210px;
+		margin-inline: auto;
+	}
+
+	.member-list,
+	.music-list,
+	.schedule-list {
+		width: 100%;
+		max-width: var(--section-width);
+		margin-inline: auto;
+		justify-content: center;
+		align-items: stretch;
+	}
+
+	/* Ảnh thành viên và poster vẫn giữ kiểu card ban đầu. */
+	#members { padding-bottom: 96px; }
+	#music { padding-bottom: 98px; }
+	#schedule { padding-bottom: 96px; }
+	#contact {
+		min-height: 380px;
+		padding-bottom: 94px;
+		text-align: center;
+	}
+
+	/* Card bài hát giữ các nút thẳng hàng hơn khi tiêu đề dài. */
+	.music-card {
+		display: flex;
+		flex-direction: column;
+	}
+	.music-info {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		align-items: center;
+	}
+	.music-info a { margin-top: auto; }
+
+	/*------------------ SÓNG NHIỀU LỚP CÓ BÓNG NHẸ -----------------------*/
+	/* Lớp 1: màu section trước uốn vào section sau, không có đường cắt ngang. */
+	#about::before, #members::before, #music::before,
+	#schedule::before, #contact::before, footer::before {
+		content: "";
+		position: absolute;
+		inset: 0 0 auto;
+		width: 100%;
+		height: var(--wave-height);
+		background: var(--previous-bg);
+		pointer-events: none;
+		z-index: 0;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201440%20110%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M0%200%20H1440%20V47%20C1320%2087%201220%2083%201080%2050%20S690%2010%20520%2055%20S180%209%200%2052%20Z%22%2F%3E%3C%2Fsvg%3E") center / 100% 100% no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201440%20110%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M0%200%20H1440%20V47%20C1320%2087%201220%2083%201080%2050%20S690%2010%20520%2055%20S180%209%200%2052%20Z%22%2F%3E%3C%2Fsvg%3E") center / 100% 100% no-repeat;
+	}
+
+	/* Lớp 2: viền pastel nhỏ bám theo đường cong, tạo chiều sâu. */
+	#about::after, #members::after, #music::after,
+	#schedule::after, #contact::after, footer::after {
+		content: "";
+		position: absolute;
+		inset: 0 0 auto;
+		width: 100%;
+		height: var(--wave-height);
+		background: var(--wave-accent);
+		pointer-events: none;
+		z-index: 1;
+		opacity: 0.85;
+		filter: drop-shadow(0 4px 4px rgba(50, 50, 80, 0.12));
+		-webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201440%20110%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2211%22%20stroke-linecap%3D%22round%22%20d%3D%22M0%2052%20C180%209%20350%20100%20520%2055%20S900%2010%201080%2050%20S1320%2087%201440%2047%22%2F%3E%3C%2Fsvg%3E") center / 100% 100% no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%201440%20110%22%20preserveAspectRatio%3D%22none%22%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%2211%22%20stroke-linecap%3D%22round%22%20d%3D%22M0%2052%20C180%209%20350%20100%20520%2055%20S900%2010%201080%2050%20S1320%2087%201440%2047%22%2F%3E%3C%2Fsvg%3E") center / 100% 100% no-repeat;
+	}
+
+	/* Nội dung thật luôn ở phía trên lớp sóng. */
+	#about > *, #members > *, #music > *,
+	#schedule > *, #contact > *, footer > * {
+		position: relative;
+		z-index: 2;
+	}
+
+	/* Đường sóng Footer cũng ở bên trong Footer, không đè phần Contact. */
+	footer {
+		position: relative;
+		isolation: isolate;
+		margin: 0;
+		padding: 112px 30px 36px;
+		background: var(--section-bg);
+	}
+
+	/*------------------ RESPONSIVE - SÓNG VÀ CĂN GIỮA -----------------------*/
+	@media (max-width: 900px) {
+		:root { --wave-height: 72px; }
+		#about, #members, #music, #schedule, #contact {
+			padding: 94px 25px 70px;
+		}
+		#contact { min-height: 310px; }
+		footer { padding: 95px 25px 35px; }
+	}
+
+	@media (max-width: 600px) {
+		:root { --wave-height: 58px; }
+		#about, #members, #music, #schedule, #contact {
+			padding: 78px 16px 58px;
+		}
+		#members, #music, #schedule { padding-bottom: 65px; }
+		#about > h2, #members > h2, #music > h2,
+		#schedule > h2, #contact > h2 { margin-bottom: 23px; }
+		.about-box { min-height: 0; padding: 28px 22px; }
+		.member-list, .music-list, .schedule-list { gap: 18px; }
+		#contact { min-height: 260px; }
+		footer { padding: 78px 16px 30px; }
+	}
+	/*------------------ CĂN TRÁI CONTACT -----------------------*/
+		#contact {
+			align-items: flex-start;
+			text-align: left;
+		}
+
+		#contact > h2 {
+			align-self: flex-start;
+			text-align: left;
+		}
+
+		#contact > * {
+			text-align: left;
+		}
+
+
