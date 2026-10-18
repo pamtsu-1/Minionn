@@ -1,0 +1,861 @@
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	header {
+		height: 80px;
+	}
+	
+	.reveal {
+		opacity: 0;
+		transform: translateY(50px);
+
+		transition:
+			opacity 0.8s ease,
+			transform 0.8s ease;
+	}
+
+	.reveal.show {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.navbar {
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 50px;
+	}
+
+	.menu {
+		display: flex;
+		list-style: none;
+		gap: 30px;
+	}
+
+	.menu a {
+		text-decoration: none;
+		color: black;
+	}
+	.menu a {
+		position: relative;
+		text-decoration: none;
+		color: black;
+		font-weight: 600;
+		padding-bottom: 6px;
+	}
+
+	.menu a::after {
+		content: "";
+
+		position: absolute;
+		left: 50%;
+		bottom: 0;
+
+		width: 0;
+		height: 3px;
+
+		background: linear-gradient(
+			90deg,
+			#ff8fab,
+			#ffd166,
+			#90e0ef,
+			#cdb4db
+		);
+
+		border-radius: 10px;
+
+		transform: translateX(-50%);
+
+		transition: 0.3s;
+	}
+
+	.menu a:hover::after {
+		width: 100%;
+	}
+
+	 /* design background */
+	.hero {
+		height: 90vh;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		background-image: url("images/back.jpg");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		
+		
+	}
+	
+	
+	.hero h1 {
+		font-size: 90px;
+
+		letter-spacing: 8px;
+
+		text-shadow:
+			0 0 10px rgba(255,255,255,0.8),
+			0 0 25px rgba(144,224,239,0.7),
+			0 0 45px rgba(255,143,171,0.5);
+
+		animation: heroGlow 4s ease-in-out infinite alternate;
+	}
+
+	@keyframes heroGlow {
+		from {
+			transform: translateY(0);
+		}
+
+		to {
+			transform: translateY(-8px);
+		}
+	}
+	 /* design background */
+	 /* Cụm logo bên trái */
+	.logo {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	/* Logo tròn */
+	.logo-round {
+		width: 50px;
+		height: 50px;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+
+	/* Ảnh ngang kế bên */
+	.logo-wide {
+		width: auto;
+		height: 50px;
+		object-fit: contain;
+	}
+
+	section {
+		min-height: 500px;
+		padding: 80px 50px;
+	}
+
+	section h2 {
+		margin-bottom: 30px;
+	}
+
+
+	/*
+		design mấy cái dưới
+	*/
+	/*------------------Giới thiệu về band-----------------------*/
+	.about-box {
+		background-color: #dff3ff;
+		border-radius: 25px;
+
+		padding: 40px;
+
+		width: 100%;
+		min-height: 250px;
+	}
+		/*---------------- Danh sách thành viên -----------------------*/
+		
+	.member-list {
+		display: flex;
+		gap: 25px;
+		flex-wrap: wrap;
+	}
+
+	/* Card thành viên */
+	.member-card {
+		position: relative;
+
+		width: 300px;
+		height: 400px;
+
+		border-radius: 25px;
+		overflow: hidden;
+	}
+	.member-card {
+		transition: 0.35s;
+	}
+
+	.member-card:hover {
+		transform: translateY(-8px);
+
+		box-shadow:
+			0 15px 35px rgba(0,0,0,0.15),
+			0 0 25px rgba(144,224,239,0.5);
+	}
+
+	/* Ảnh */
+	.member-card img {
+		width: 100%;
+		height: 100%;
+
+		object-fit: cover;
+
+		transition: 0.3s;
+	}
+
+	/* Lớp chữ nằm trên ảnh */
+	.member-info {
+		position: absolute;
+
+		left: 0;
+		bottom: 0;
+
+		width: 100%;
+
+		padding: 50px 20px 20px;
+
+		color: white;
+
+		background: linear-gradient(
+			transparent,
+			rgba(0, 0, 0, 0.75)
+		);
+	}
+
+	/* Tên */
+	.member-info h3 {
+		font-size: 24px;
+		margin-bottom: 5px;
+	}
+
+	/* Vai trò */
+	.member-info p {
+		font-size: 14px;
+	}
+	.role {
+		font-weight: bold;
+		background: linear-gradient(
+			90deg,
+			#ff4d4d,
+			#ffcc00,
+			#00d084,
+			#00aaff,
+			#a855f7,
+			#ff4d4d
+		);
+		background-size: 300% 100%;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: roleColor 4s linear infinite;
+	}
+	@keyframes roleColor {
+		0% {
+			background-position: 0% 50%;
+		}
+
+		100% {
+			background-position: 300% 50%;
+		}
+	}
+
+	/* Hover ảnh */
+	.member-card:hover img {
+		transform: scale(1.05);
+	}
+
+
+	.member {
+		padding: 50px;
+		margin-bottom: 20px;
+
+		background-color: #eeeeee;
+	}
+		/*--------------------- MUSIC--------------------- */
+	#music {
+		background-color: #f7fbff;
+	}
+
+	/* Danh sách nhạc */
+	.music-list {
+		display: flex;
+		gap: 30px;
+		flex-wrap: wrap;
+	}
+
+	/* Card nhạc */
+	.music-card {
+		width: 300px;
+
+		background-color: white;
+
+		border-radius: 25px;
+		overflow: hidden;
+
+		box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+		transition: 0.3s;
+	}
+
+	/* Ảnh bài hát */
+	.music-card img {
+		width: 100%;
+		height: 300px;
+
+		object-fit: cover;
+	}
+	.music-img {
+		box-shadow:
+			0 0 0 6px white,
+			0 0 0 9px #cfe8ff,
+			0 8px 25px rgba(0,0,0,0.15);
+	}
+	.music-card:hover .music-img {
+		animation:
+			quayDia 3s linear infinite,
+			musicGlow 1.5s ease-in-out infinite alternate;
+	}
+
+	@keyframes musicGlow {
+		from {
+			box-shadow:
+				0 0 0 6px white,
+				0 0 0 9px #cfe8ff,
+				0 8px 25px rgba(0,0,0,0.15);
+		}
+
+		to {
+			box-shadow:
+				0 0 0 6px white,
+				0 0 0 9px #ffb6d9,
+				0 0 30px rgba(255,182,217,0.8);
+		}
+	}
+
+	/* Thông tin */
+	.music-info {
+		padding: 20px;
+	}
+
+	/* Tên bài */
+	.music-info h3 {
+		font-size: 22px;
+		margin-bottom: 5px;
+	}
+
+	/* Tên band */
+	.music-info p {
+		color: #777;
+		margin-bottom: 20px;
+	}
+
+	/* Nút nghe */
+	.music-info a {
+		display: inline-block;
+
+		padding: 10px 20px;
+
+		background-color: #cfe8ff;
+		color: black;
+
+		text-decoration: none;
+
+		border-radius: 20px;
+
+		font-size: 13px;
+		font-weight: bold;
+	}
+
+	/* Hover */
+	.music-card:hover {
+		transform: translateY(-5px);
+	}
+	.music-card {
+    width: 260px;
+    padding: 25px;
+    text-align: center;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+	/*ảnh xoay*/
+	.music-card .music-img {
+		width: 200px !important;
+		height: 200px !important;
+
+		object-fit: cover;
+		border-radius: 50%;
+
+		display: block;
+		margin: 0 auto;
+
+		transition: transform 0.3s;
+	}
+
+	.music-card:hover .music-img {
+		animation: quayDia 3s linear infinite;
+	}
+
+	@keyframes quayDia {
+		from {
+			transform: rotate(0deg);
+		}
+
+		to {
+			transform: rotate(360deg);
+		}
+	}
+	
+	/* ================= SCHEDULE ================= */
+
+	#schedule {
+		background-color: #f7fbff;
+	}
+
+	.schedule-list {
+		display: flex;
+		gap: 25px;
+		flex-wrap: wrap;
+	}
+
+	.schedule-card {
+		position: relative;
+
+		width: 300px;
+		height: 400px;
+
+		border-radius: 25px;
+		overflow: hidden;
+
+		cursor: pointer;
+
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.schedule-card img {
+		width: 100%;
+		height: 100%;
+
+		object-fit: cover;
+
+		transition: 0.3s;
+	}
+
+	.schedule-info {
+		position: absolute;
+
+		left: 0;
+		bottom: 0;
+
+		width: 100%;
+
+		padding: 70px 20px 20px;
+
+		color: white;
+
+		background: linear-gradient(
+			transparent,
+			rgba(0, 0, 0, 0.8)
+		);
+	}
+
+	.schedule-info h3 {
+		font-size: 24px;
+		margin-bottom: 8px;
+	}
+
+	.schedule-date-text {
+		font-weight: bold;
+	}
+
+	.schedule-type {
+		font-weight: bold;
+
+		background: linear-gradient(
+			90deg,
+			#ff4d4d,
+			#ffcc00,
+			#00d084,
+			#00aaff,
+			#a855f7
+		);
+
+		background-size: 300% 100%;
+
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+
+		animation: roleColor 4s linear infinite;
+	}
+
+	.schedule-card:hover img {
+		transform: scale(1.07);
+	}
+	
+	/*Liên hệ*/
+	#contact {
+		background-color: white;
+	}
+
+	#contact p {
+		margin-bottom: 10px;
+		color: #555;
+	}
+
+	#contact a {
+		color: #555;
+		text-decoration: none;
+		font-weight: bold;
+	}
+
+	#contact a:hover {
+		text-decoration: underline;
+	}
+	.contact-label {
+		font-weight: bold;
+
+		background: linear-gradient(
+			90deg,
+			#ff4d4d,
+			#ffcc00,
+			#00d084,
+			#00aaff,
+			#a855f7,
+			#ff4d4d
+		);
+
+		background-size: 300% 100%;
+
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+
+		animation: contactColor 4s linear infinite;
+	}
+
+	@keyframes contactColor {
+		0% {
+			background-position: 0% 50%;
+		}
+
+		100% {
+			background-position: 300% 50%;
+		}
+	}
+
+	footer {
+		padding: 40px;
+		text-align: center;
+	}
+
+	body {
+		font-family: Arial, sans-serif;
+
+		background: linear-gradient(
+			180deg,
+			#fff8fc,
+			#f7fbff,
+			#fffdf5
+		);
+
+		color: #222;
+	}
+
+
+	/* HERO */
+	.hero {
+		background-image:
+			linear-gradient(
+				rgba(255,255,255,0.08),
+				rgba(255,255,255,0.08)
+			),
+			url("images/back.jpg");
+
+		background-size: cover;
+		background-position: center;
+	}
+
+
+	/* GIỚI THIỆU */
+	#about {
+		background: linear-gradient(
+			135deg,
+			#fff1f7,
+			#eef9ff
+		);
+	}
+
+	.about-box {
+		background: linear-gradient(
+			90deg,
+			#dff3ff 0%,
+			#d9ecff 35%,
+			#e9ddff 70%,
+			#fff1c9 100%
+		);
+
+		border-radius: 25px;
+		padding: 40px;
+		width: 100%;
+		min-height: 250px;
+
+		box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+	}
+
+
+	/* THÀNH VIÊN */
+	#members {
+		background: linear-gradient(
+			135deg,
+			#fffdf5,
+			#f7f0ff
+		);
+	}
+
+	.member-card:nth-child(1) {
+		box-shadow: 0 12px 30px rgba(255, 143, 171, 0.25);
+	}
+
+	.member-card:nth-child(2) {
+		box-shadow: 0 12px 30px rgba(144, 224, 239, 0.28);
+	}
+
+	.member-card:nth-child(3) {
+		box-shadow: 0 12px 30px rgba(255, 209, 102, 0.28);
+	}
+
+	.member-card:nth-child(4) {
+		box-shadow: 0 12px 30px rgba(205, 180, 219, 0.28);
+	}
+
+
+	/* MUSIC */
+	#music {
+		background: linear-gradient(
+			135deg,
+			#eef9ff,
+			#fff0f6
+		);
+	}
+
+	.music-card:nth-child(1) {
+		background: #fff4f8;
+	}
+
+	.music-card:nth-child(2) {
+		background: #f0faff;
+	}
+
+	.music-card:nth-child(3) {
+		background: #fff9e8;
+	}
+
+	.music-card:nth-child(4) {
+		background: #f7f0ff;
+	}
+
+
+	/* LỊCH DIỄN */
+	#schedule {
+		background: linear-gradient(
+			135deg,
+			#fff7e6,
+			#eefaff
+		);
+	}
+
+	.schedule-card {
+		box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+	}
+
+
+	/* LIÊN HỆ */
+	#contact {
+		background: linear-gradient(
+			135deg,
+			#eefaff,
+			#fff1f7,
+			#fff8df
+		);
+	}
+
+
+	/* FOOTER */
+	footer {
+		background: linear-gradient(
+			90deg,
+			#ffd6e7,
+			#dff3ff,
+			#fff1b8
+		);
+
+		color: #333;
+	}
+	section h2 {
+    display: inline-block;
+
+    background: linear-gradient(
+        90deg,
+        #ff6b9a,
+        #ffb347,
+        #4dc9e6,
+        #a855f7
+    );
+
+    background-size: 300% 100%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: titleColor 5s linear infinite;
+}
+
+@keyframes titleColor {
+    from {
+        background-position: 0% 50%;
+    }
+
+    to {
+        background-position: 300% 50%;
+    }
+}
+.hero {
+    opacity: 0;
+    transform: translateY(70px);
+
+    animation: heroLoad 1.4s ease-out forwards;
+}
+
+.hero h1,
+.hero p {
+    opacity: 0;
+    transform: translateY(30px);
+
+    animation: heroText 1s ease-out 0.8s forwards;
+}
+
+@keyframes heroLoad {
+    from {
+        opacity: 0;
+        transform: translateY(70px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heroText {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.hero-title {
+    display: flex;
+    gap: 10px;
+
+    font-size: 90px;
+    letter-spacing: 5px;
+}
+
+/* Các chữ ban đầu */
+.hero-title span {
+    opacity: 0;
+    display: inline-block;
+}
+
+/* Chữ lẻ đi từ trái vào */
+.hero-title span:nth-child(odd) {
+    transform: translateX(-120px);
+    animation: letterFromLeft 1s ease forwards;
+}
+
+/* Chữ chẵn đi từ phải vào */
+.hero-title span:nth-child(even) {
+    transform: translateX(120px);
+    animation: letterFromRight 1s ease forwards;
+}
+
+/* Delay từng chữ */
+.hero-title span:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.hero-title span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.hero-title span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.hero-title span:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+.hero-title span:nth-child(5) {
+    animation-delay: 0.6s;
+}
+
+.hero-title span:nth-child(6) {
+    animation-delay: 0.7s;
+}
+
+.hero-title span:nth-child(7) {
+    animation-delay: 0.8s;
+}
+
+
+@keyframes letterFromLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-120px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+@keyframes letterFromRight {
+
+    from {
+        opacity: 0;
+        transform: translateX(120px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+section h2 {
+    background: linear-gradient(
+        90deg,
+        #ff86b7,
+        #ffcb57,
+        #66b8ff,
+        #b388ff
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleColor 5s linear infinite;
+}
+
+@keyframes titleColor {
+    from {
+        background-position: 0% 50%;
+    }
+    to {
+        background-position: 300% 50%;
+    }
+}
